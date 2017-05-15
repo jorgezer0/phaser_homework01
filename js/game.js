@@ -95,9 +95,9 @@ GameState.prototype.create = function() {
     this.fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
     
     //SCORE
-    this.pointCount = 0;
-    this.score = this.game.add.text(400, 25, "Score:", {fill: "#ffffff"});
-    this.score.anchor.setTo(0.5,0.5);
+    this.score = 0;
+    this.scoreTex = this.game.add.text(400, 25, "Score:", {fill: "#ffffff"});
+    this.scoreTex.anchor.setTo(0.5,0.5);
     
     //SOUNDS
     this.flySound = this.game.add.audio('flySound');
@@ -109,7 +109,7 @@ GameState.prototype.create = function() {
 }
 
 GameState.prototype.update = function() {
-    this.score.setText("Score: " + this.pointCount);
+    this.scoreTex.setText("Score: " + this.score);
     this.player.play('fly');
     this.enemy.play('fly');
     this.background.tilePosition.x -= 1;
@@ -156,11 +156,12 @@ GameState.prototype.update = function() {
 
 GameState.prototype.groundCollision = function(player, ground){
     this.explosion1Sound.play();
+    Globals.score = this.score;
     this.game.state.start('lose');      
 }
 
 GameState.prototype.bulletCollision = function(){
-    this.pointCount += 20;
+    this.score += 20;
     this.weapon.killAll();
     this.explosion2Sound.play();
     this.enemy.position.x = this.game.rnd.integerInRange(900, 1300);
@@ -168,21 +169,21 @@ GameState.prototype.bulletCollision = function(){
 }
 
 GameState.prototype.coin1Collision = function(){
-    this.pointCount += 1;
+    this.score += 1;
     this.coinSound.play();
     this.coin1.position.x = this.game.rnd.integerInRange(1000, 4000);
     this.coin1.position.y = this.game.rnd.integerInRange(150, 400);  
 }
 
 GameState.prototype.coin5Collision = function(){
-    this.pointCount += 5;
+    this.score += 5;
     this.coinSound.play();
     this.coin5.position.x = this.game.rnd.integerInRange(2000, 5000);
     this.coin5.position.y = this.game.rnd.integerInRange(150, 400);  
 }
 
 GameState.prototype.coin10Collision = function(){
-    this.pointCount += 10;
+    this.score += 10;
     this.coinSound.play();
     this.coin10.position.x = this.game.rnd.integerInRange(3000, 6000);
     this.coin10.position.y = this.game.rnd.integerInRange(150, 400);  

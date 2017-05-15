@@ -1,3 +1,6 @@
+var Globals = { 
+    score : 0
+};
 // main.js: Neste arquivo criamos uma instância de Phaser.Game e 
 // determinamos quais scenes farão parte do jogo
 // logo após iniciamos a primeira scene

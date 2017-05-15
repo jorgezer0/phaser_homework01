@@ -14,6 +14,9 @@ LoseState.prototype.create = function() {
     this.gameover = game.add.tileSprite(400,300,412,78,'gameover');
     this.gameover.anchor.setTo(0.5,0.5);
     
+    this.scoreMsg = this.game.add.text(400, 400, "Seu Score: " + Globals.score + "!", {fill: "#000000"});
+    this.scoreMsg.anchor.setTo(0.5,0.5);
+    
     this.msg = this.game.add.text(400, 500, "Pressione SPACE BAR para tentar novamente! ", {fill: "#000000"});
     this.msg.anchor.setTo(0.5,0.5);
     
